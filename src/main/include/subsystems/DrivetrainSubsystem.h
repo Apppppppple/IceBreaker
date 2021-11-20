@@ -1,13 +1,11 @@
 
 #pragma once
 
-#include <frc/drive/DifferentialDrive.h>
 #include <frc2/command/SubsystemBase.h>
+#include <frc/drive/DifferentialDrive.h>
+#include <frc/SpeedControllerGroup.h>
 #include "ctre/Phoenix.h"
-#include <frc/SpeedController.h>
-#include <frc/PIDOutput.h>
-
-
+#include "Constants.h"
 
 
 class DrivetrainSubsystem : public frc2::SubsystemBase {
@@ -18,15 +16,16 @@ class DrivetrainSubsystem : public frc2::SubsystemBase {
   void Drive(double forward, double rotation);
   void StopDrive();
 
- private:
-  WPI_VictorSPX leftDrive1;
-  WPI_VictorSPX leftDrive2;
-  WPI_VictorSPX rightDrive1;
-  WPI_VictorSPX rightDrive2;
 
-  frc::SpeedController leftDriveMotors{leftDrive1, leftDrive2};
-  frc::SpeedController rightDriveMotors{rightDrive1, rightDrive2};
-  frc::SpeedController::SetInverted(rightDriveMotors);
+ private:
+  WPI_VictorSPX leftDrive1{DriveConstants::leftMotor1Channel};
+  WPI_VictorSPX leftDrive2{DriveConstants::leftMotor2Channel};
+  WPI_VictorSPX rightDrive1{DriveConstants::rightMotor1Channel};
+  WPI_VictorSPX rightDrive2{DriveConstants::rightMotor2Channel};
+
+  frc::SpeedControllerGroup leftDriveMotors{leftDrive1, leftDrive2};
+  frc::SpeedControllerGroup rightDriveMotors{rightDrive1, rightDrive2};
+  
   frc::DifferentialDrive drive{leftDriveMotors, rightDriveMotors};
 
 };
