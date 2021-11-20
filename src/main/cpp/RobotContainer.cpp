@@ -13,9 +13,9 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   // Configure the button bindings
   ConfigureButtonBindings();
 
-  drivetrainSubsystem.SetDefaultCommand(DefaultDrive(
-      &drivetrainSubsystem, [this] { return controller.GetY(frc::XboxController::kLeftHand); },
-                            [this] { return controller.GetX(frc::XboxController::kLeftHand); }));
+  drivetrainSubsystem.SetDefaultCommand(DefaultDrive(&drivetrainSubsystem,
+                                [this] { return controller.GetY(frc::XboxController::kLeftHand); },
+                                [this] { return controller.GetX(frc::XboxController::kLeftHand); }));
 }
 
 void RobotContainer::ConfigureButtonBindings() {

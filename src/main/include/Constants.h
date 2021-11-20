@@ -6,7 +6,6 @@ namespace DriveConstants{
     const int leftMotor2Channel = 1;
     const int rightMotor1Channel = 2;
     const int rightMotor2Channel = 3;
-
 }
 
 namespace ControllerConstants{

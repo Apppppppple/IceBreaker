@@ -26,6 +26,6 @@ class DrivetrainSubsystem : public frc2::SubsystemBase {
   frc::SpeedControllerGroup leftDriveMotors{leftDrive1, leftDrive2};
   frc::SpeedControllerGroup rightDriveMotors{rightDrive1, rightDrive2};
   
-  frc::DifferentialDrive drive{leftDriveMotors, rightDriveMotors};
+  frc::DifferentialDrive drivetrain{leftDriveMotors, rightDriveMotors};
 
 };

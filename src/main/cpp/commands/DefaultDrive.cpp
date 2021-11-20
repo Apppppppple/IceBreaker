@@ -5,7 +5,7 @@
 DefaultDrive::DefaultDrive(DrivetrainSubsystem* subsystem,
                            std::function<double()> forward,
                            std::function<double()> rotation)
-    : drive{subsystem}, forward{forward}, rotation{rotation} {
+  : drivetrain{subsystem}, forward{forward}, rotation{rotation} {
   AddRequirements({subsystem});
 }
 
@@ -13,7 +13,7 @@ void DefaultDrive::Initialize() {
 }
 
 void DefaultDrive::Execute() {
-  drive->Drive(forward(), rotation());
+  drivetrain->Drive(forward(), rotation());
 }
 
 void DefaultDrive::End(bool interrupted) {

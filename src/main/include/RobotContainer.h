@@ -18,8 +18,9 @@ class RobotContainer {
 
  private:
   ExampleSubsystem m_subsystem;
-  ExampleCommand m_autonomousCommand;
   DrivetrainSubsystem drivetrainSubsystem;
+
+  ExampleCommand m_autonomousCommand;
 
   frc::XboxController controller{ControllerConstants::ControllerPort};
 

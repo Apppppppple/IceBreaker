@@ -9,7 +9,7 @@ void DrivetrainSubsystem::Periodic() {
 }
 
 void DrivetrainSubsystem::Drive(double forward, double rotation){
-    drive.ArcadeDrive(forward, rotation);
+    drivetrain.ArcadeDrive(forward, rotation);
 }
 
 void DrivetrainSubsystem::StopDrive(){
