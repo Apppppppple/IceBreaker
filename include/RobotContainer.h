@@ -5,6 +5,7 @@
 #pragma once
 
 #include <frc2/command/Command.h>
+#include <frc/Joystick.h>
 
 #include "commands/ExampleCommand.h"
 #include "subsystems/ExampleSubsystem.h"
@@ -17,15 +18,18 @@
  * commands, and button mappings) should be declared here.
  */
 class RobotContainer {
- public:
-  RobotContainer();
+    public:
+        RobotContainer();
 
-  frc2::Command* GetAutonomousCommand();
+        frc2::Command* GetAutonomousCommand();
 
- private:
-  // The robot's subsystems and commands are defined here...
-  ExampleSubsystem m_subsystem;
-  ExampleCommand m_autonomousCommand;
+        static frc::Joystick joystickLeft, joystickRight, xboxController;
 
-  void ConfigureButtonBindings();
+
+    private:
+        // The robot's subsystems and commands are defined here...
+        ExampleSubsystem m_subsystem;
+        ExampleCommand m_autonomousCommand;
+
+        void ConfigureButtonBindings();
 };

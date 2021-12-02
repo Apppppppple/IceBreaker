@@ -1,0 +1,11 @@
+[binaries]
+c = '/home/apple/Documents/Code/bow/IceMaker/toolchain/bin/arm-frc2021-linux-gnueabi-gcc'
+cpp = '/home/apple/Documents/Code/bow/IceMaker/toolchain/bin/arm-frc2021-linux-gnueabi-g++'
+ar = '/home/apple/Documents/Code/bow/IceMaker/toolchain/bin/arm-frc2021-linux-gnueabi-ar'
+strip = 'toolchain/bin/arm-frc2021-linux-gnueabi-strip'
+
+[host_machine]
+system = 'frc2021'
+cpu_family = 'arm'
+cpu = 'cortex_a9'
+endian = 'little'
