@@ -2,6 +2,7 @@
 #include "subsystems/DrivetrainSubsystem.h"
 
 DrivetrainSubsystem::DrivetrainSubsystem(){
+    leftDriveMotors.SetInverted(false);
     rightDriveMotors.SetInverted(true);
 }
 
