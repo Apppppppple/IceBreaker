@@ -5,6 +5,7 @@
 
 #include <frc/XboxController.h>
 #include "subsystems/DrivetrainSubsystem.h"
+#include "subsystems/SpinnerSubsystem.h"
 #include "commands/DefaultDrive.h"
 #include "Constants.h"
 
@@ -16,8 +17,9 @@ class RobotContainer {
 
  private:
   DrivetrainSubsystem drivetrainSubsystem;
-
+  SpinnerSubsystem spinnerSubsystem;
   frc::XboxController controller{ControllerConstants::ControllerPort};
+  
 
   void ConfigureButtonBindings();
 };

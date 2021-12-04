@@ -8,6 +8,10 @@ namespace DriveConstants{
     const int rightMotor2Channel = 15;
 }
 
+namespace SpinnerConstants{
+    const int spinnerMotor = 3;
+}
+
 namespace ControllerConstants{
     const int ControllerPort = 0;
 }
