@@ -4,10 +4,15 @@
 
 #pragma once
 
-#include <frc2/command/Command.h>
 #include <frc/Joystick.h>
+#include <frc/XboxController.h>
+#include <frc2/command/Command.h>
+#include <frc2/command/ParallelRaceGroup.h>
+#include <frc2/command/SequentialCommandGroup.h>
 
+#include "Constants.h"
 #include "commands/ExampleCommand.h"
+#include "sensors/Limelight.h"
 #include "subsystems/ExampleSubsystem.h"
 
 /**
@@ -18,18 +23,25 @@
  * commands, and button mappings) should be declared here.
  */
 class RobotContainer {
-    public:
-        RobotContainer();
+public:
+  RobotContainer();
 
-        frc2::Command* GetAutonomousCommand();
+  frc2::Command *GetAutonomousCommand();
 
-        static frc::Joystick joystickLeft, joystickRight, xboxController;
+private:
+  // The robot's subsystems and commands are defined here...
+  ExampleSubsystem m_subsystem;
+  ExampleCommand m_autonomousCommand;
 
+  frc2::SequentialCommandGroup autoShootAndCollect;
+  frc2::SequentialCommandGroup autoShootOnly;
+  frc2::ParallelRaceGroup autoDriveOnly;
 
-    private:
-        // The robot's subsystems and commands are defined here...
-        ExampleSubsystem m_subsystem;
-        ExampleCommand m_autonomousCommand;
+  frc::Joystick joystickLeft{oi_constants::leftJoystick},
+      joystickRight{oi_constants::rightJoystick};
+  frc::XboxController xboxController{oi_constants::xboxController};
 
-        void ConfigureButtonBindings();
+  Limelight limelight;
+
+  void ConfigureButtonBindings();
 };

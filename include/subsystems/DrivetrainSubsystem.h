@@ -4,10 +4,26 @@
 
 #pragma once
 
+#include <ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h>
+#include <frc/ADXRS450_Gyro.h>
+#include <frc/DoubleSolenoid.h>
+#include <frc/Encoder.h>
+#include <frc/SpeedControllerGroup.h>
+#include <frc/drive/DifferentialDrive.h>
 #include <frc2/command/SubsystemBase.h>
 
+#include "Constants.h"
+
 class DrivetrainSubsystem : public frc2::SubsystemBase {
- public:
+  using VictorSPX = ctre::phoenix::motorcontrol::can::WPI_VictorSPX;
+
+public:
+  frc::Encoder dtLeftEncoder, dtRightEncoder;
+  frc::ADXRS450_Gyro driveGyro;
+
+  enum GearShiftStatus { High, Low };
+  static GearShiftStatus gearShiftStatus;
+
   DrivetrainSubsystem();
 
   /**
@@ -21,7 +37,20 @@ class DrivetrainSubsystem : public frc2::SubsystemBase {
    */
   void SimulationPeriodic() override;
 
- private:
-  // Components (e.g. motor controllers and sensors) should generally be
-  // declared private and exposed only through public methods.
+private:
+  VictorSPX leftMotors[3]{drive_constants::leftMotorChannels[0],
+                          drive_constants::leftMotorChannels[1],
+                          drive_constants::leftMotorChannels[2]},
+      rightMotors[3]{drive_constants::rightMotorChannels[0],
+                     drive_constants::rightMotorChannels[1],
+                     drive_constants::rightMotorChannels[2]};
+  frc::DifferentialDrive m_drive;
+
+  frc::DoubleSolenoid gearShiftSolenoid{drive_constants::gearShiftHighChannel,
+    drive_constants::gearShiftLowChannel};
+
+  frc::SpeedControllerGroup leftDriveMotors{leftMotors[0], leftMotors[1],
+                                            leftMotors[2]};
+  frc::SpeedControllerGroup rightDriveMotors{rightMotors[0], rightMotors[1],
+                                             rightMotors[2]};
 };

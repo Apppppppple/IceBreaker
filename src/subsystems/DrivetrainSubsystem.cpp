@@ -4,7 +4,17 @@
 
 #include "subsystems/DrivetrainSubsystem.h"
 
+#include <frc/SpeedControllerGroup.h>
+
+#include "Constants.h"
+#include "frc/drive/DifferentialDrive.h"
+
 DrivetrainSubsystem::DrivetrainSubsystem() {
+  leftDriveMotors.SetInverted(true);
+  rightDriveMotors.SetInverted(true);
+  // m_drive = frc::DifferentialDrive(m_left, m)
+
+
   // Implementation of subsystem constructor goes here.
 }
 
