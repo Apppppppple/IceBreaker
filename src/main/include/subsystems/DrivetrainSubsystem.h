@@ -18,16 +18,12 @@ class DrivetrainSubsystem : public frc2::SubsystemBase {
   using VictorSPX = ctre::phoenix::motorcontrol::can::WPI_VictorSPX;
 
 public:
-<<<<<<< HEAD:include/subsystems/DrivetrainSubsystem.h
   frc::Encoder dtLeftEncoder{drive_constants::driveTrainLeftEncoderChannelA,
                              drive_constants::driveTrainLeftEncoderChannelB,
                              false, frc::CounterBase::EncodingType::k4X},
       dtRightEncoder{drive_constants::driveTrainRightEncoderChannelA,
                      drive_constants::driveTrainRightEncoderChannelB, true,
                      frc::CounterBase::EncodingType::k4X};
-=======
-  frc::Encoder dtLeftEncoder, dtRightEncoder;
->>>>>>> 76dc8b22530cf0264c2c31a89584a1c04cfbe1c0:src/main/include/subsystems/DrivetrainSubsystem.h
   frc::ADXRS450_Gyro driveGyro;
 
   enum GearShiftStatus { High, Low };
@@ -35,7 +31,6 @@ public:
 
   DrivetrainSubsystem();
 
-<<<<<<< HEAD:include/subsystems/DrivetrainSubsystem.h
   void Drive(double leftSpeed, double rightSpeed);
   void StopDrive();
 
@@ -83,33 +78,4 @@ private:
                                            *leftMotors[2]};
   frc::SpeedControllerGroup rightController{*rightMotors[0], *rightMotors[1],
                                             *rightMotors[2]};
-=======
-  /**
-   * Will be called periodically whenever the CommandScheduler runs.
-   */
-  void Periodic() override;
-
-  /**
-   * Will be called periodically whenever the CommandScheduler runs during
-   * simulation.
-   */
-  void SimulationPeriodic() override;
-
-private:
-  VictorSPX leftMotors[3]{drive_constants::leftMotorChannels[0],
-                          drive_constants::leftMotorChannels[1],
-                          drive_constants::leftMotorChannels[2]},
-      rightMotors[3]{drive_constants::rightMotorChannels[0],
-                     drive_constants::rightMotorChannels[1],
-                     drive_constants::rightMotorChannels[2]};
-  frc::DifferentialDrive m_drive;
-
-  frc::DoubleSolenoid gearShiftSolenoid{drive_constants::gearShiftHighChannel,
-    drive_constants::gearShiftLowChannel};
-
-  frc::SpeedControllerGroup leftDriveMotors{leftMotors[0], leftMotors[1],
-                                            leftMotors[2]};
-  frc::SpeedControllerGroup rightDriveMotors{rightMotors[0], rightMotors[1],
-                                             rightMotors[2]};
->>>>>>> 76dc8b22530cf0264c2c31a89584a1c04cfbe1c0:src/main/include/subsystems/DrivetrainSubsystem.h
 };

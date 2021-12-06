@@ -5,7 +5,6 @@
 #include "subsystems/DrivetrainSubsystem.h"
 
 #include <frc/SpeedControllerGroup.h>
-<<<<<<< HEAD:src/subsystems/DrivetrainSubsystem.cpp
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/CounterBase.h>
 #include <frc/DoubleSolenoid.h>
@@ -103,25 +102,3 @@ void DrivetrainSubsystem::SimulationPeriodic() {
 }
 
 DrivetrainSubsystem::GearShiftStatus DrivetrainSubsystem::gearShiftStatus = GearShiftStatus::Low;
-=======
-
-#include "Constants.h"
-#include "frc/drive/DifferentialDrive.h"
-
-DrivetrainSubsystem::DrivetrainSubsystem() {
-  leftDriveMotors.SetInverted(true);
-  rightDriveMotors.SetInverted(true);
-  // m_drive = frc::DifferentialDrive(m_left, m)
-
-
-  // Implementation of subsystem constructor goes here.
-}
-
-void DrivetrainSubsystem::Periodic() {
-  // Implementation of subsystem periodic method goes here.
-}
-
-void DrivetrainSubsystem::SimulationPeriodic() {
-  // Implementation of subsystem simulation periodic method goes here.
-}
->>>>>>> 76dc8b22530cf0264c2c31a89584a1c04cfbe1c0:src/main/cpp/subsystems/DrivetrainSubsystem.cpp
