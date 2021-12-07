@@ -15,8 +15,6 @@
 #include "Constants.h"
 
 class DrivetrainSubsystem : public frc2::SubsystemBase {
-  using VictorSPX = ctre::phoenix::motorcontrol::can::WPI_VictorSPX;
-
 public:
   frc::Encoder dtLeftEncoder{drive_constants::driveTrainLeftEncoderChannelA,
                              drive_constants::driveTrainLeftEncoderChannelB,
@@ -56,7 +54,8 @@ private:
   // https://stackoverflow.com/questions/60606947/initialising-member-aggregate-type-without-copy-constructor
   // https://stackoverflow.com/questions/29759441/is-a-class-with-deleted-copy-constructor-trivially-copyable
   // https://stackoverflow.com/questions/38224877/how-to-enforce-copy-elision-why-it-wont-work-with-deleted-copy-constructor
-  VictorSPX leftMotor1{drive_constants::leftMotorChannels[0]},
+  ctre::phoenix::motorcontrol::can::WPI_VictorSPX leftMotor1{
+      drive_constants::leftMotorChannels[0]},
       leftMotor2{drive_constants::leftMotorChannels[1]},
       leftMotor3{drive_constants::leftMotorChannels[2]},
       rightMotor1{drive_constants::rightMotorChannels[0]},
