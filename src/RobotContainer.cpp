@@ -4,14 +4,15 @@
 #include "RobotContainer.h"
 
 #include <frc2/command/Command.h>
+#include <frc2/command/RunCommand.h>
 #include <frc2/command/SequentialCommandGroup.h>
 
 #include "Constants.h"
 #include "sensors/Limelight.h"
 #include "sensors/PIDParams.h"
+#include "subsystems/DrivetrainSubsystem.h"
 
-RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
-  // drivetrainSubsystem = new DrivetrainSubsystem();
+RobotContainer::RobotContainer() {
   // intakeSubsystem = new IntakeSubsystem();
   // climberSubsystem = new ClimberSubsystem();
   // conveyorSubsystem = new ConveyorSubsystem();
@@ -37,6 +38,52 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
       limelight_constants::distanceVelocityTolerance(),
   };
 
+  // AutoShootAndCollect =
+  //   new SequentialCommandGroup(
+  //     new LimelightInitCommand(shooterSubsystem),
+  //     new LimelightDriveToDistanceCommand(drivetrainSubsystem, limelight,
+  //     autoDistanceParams), new
+  //     LimelightDriveToHeadingCommand(drivetrainSubsystem, limelight,
+  //     autoHeadingParams), new LimelightEndCommand(), new ParallelRaceGroup(
+  //       new ShootCommand(shooterSubsystem, conveyorSubsystem),
+  //       new ConveyorShootBallCommand(conveyorSubsystem, shooterSubsystem),
+  //       new WaitCommand(4)),
+  //     new AutoTurnAngleCommand(drivetrainSubsystem, 45),
+  //     new ParallelRaceGroup(
+  //       new AutoDriveDistanceCommand(drivetrainSubsystem, intakeSubsystem,
+  //       36), new WaitCommand(5))
+  //   );
+
+  // AutoShootOnly =
+  //   new SequentialCommandGroup(
+  //     new LimelightInitCommand(shooterSubsystem),
+  //     new LimelightDriveToDistanceCommand(drivetrainSubsystem, limelight,
+  //     autoDistanceParams), new
+  //     LimelightDriveToHeadingCommand(drivetrainSubsystem, limelight,
+  //     autoHeadingParams), new LimelightEndCommand(), new ParallelRaceGroup(
+  //       new ShootCommand(shooterSubsystem, conveyorSubsystem),
+  //       new ConveyorShootBallCommand(conveyorSubsystem, shooterSubsystem),
+  //       new WaitCommand(4))
+  //   );
+
+  // AutoDriveOnly =
+  //   new ParallelRaceGroup(
+  //     new RunCommand(() -> drivetrainSubsystem.drive(0.6, 0.6),
+  //     drivetrainSubsystem), new WaitCommand(2)
+  //   );
+
+  // chooser.setDefaultOption("Auto Shoot Only", AutoShootOnly);
+  // chooser.addOption("Auto Shoot and Collect", AutoShootAndCollect);
+  // chooser.addOption("Auto Drive Only", AutoDriveOnly);
+  // SmartDashboard.putData(chooser);
+
+  driveTrain.SetDefaultCommand(frc2::RunCommand(
+      [this] { driveTrain.Drive(GetLeftY(), GetRightY()); }, &driveTrain));
+  // intakeSubsystem.setDefaultCommand(new RunCommand(() ->
+  // intakeSubsystem.intakeIn(getAxisValue(3)), intakeSubsystem)); // Intake
+  // balls   = hold xbox Right Trigger conveyorSubsystem.setDefaultCommand(new
+  // ConveyorIndexBallCommand(conveyorSubsystem));
+
   ConfigureButtonBindings();
 }
 
@@ -45,6 +92,11 @@ void RobotContainer::ConfigureButtonBindings() {
 }
 
 frc2::Command *RobotContainer::GetAutonomousCommand() {
-  // An example command will be run in autonomous
-  return &m_autonomousCommand;
+  // return &m_autonomousCommand;
+  return nullptr;
 }
+
+double RobotContainer::GetLeftY() { return leftJoy.GetY(); }
+double RobotContainer::GetLeftX() { return leftJoy.GetX(); }
+double RobotContainer::GetRightY() { return rightJoy.GetY(); }
+double RobotContainer::GetRightX() { return rightJoy.GetX(); }

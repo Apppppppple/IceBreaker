@@ -11,8 +11,8 @@
 #include <frc2/command/SequentialCommandGroup.h>
 
 #include "Constants.h"
-#include "commands/ExampleCommand.h"
 #include "sensors/Limelight.h"
+#include "subsystems/DrivetrainSubsystem.h"
 #include "subsystems/ExampleSubsystem.h"
 
 /**
@@ -28,17 +28,22 @@ public:
 
   frc2::Command *GetAutonomousCommand();
 
+  double GetLeftY();
+  double GetLeftX();
+  double GetRightY();
+  double GetRightX();
+
 private:
   // The robot's subsystems and commands are defined here...
-  ExampleSubsystem m_subsystem;
-  ExampleCommand m_autonomousCommand;
+  DrivetrainSubsystem driveTrain;
+  // ExampleCommand m_autonomousCommand;
 
   frc2::SequentialCommandGroup autoShootAndCollect;
   frc2::SequentialCommandGroup autoShootOnly;
   frc2::ParallelRaceGroup autoDriveOnly;
 
-  frc::Joystick joystickLeft{oi_constants::leftJoystick},
-      joystickRight{oi_constants::rightJoystick};
+  frc::Joystick leftJoy{oi_constants::leftJoystick},
+      rightJoy{oi_constants::rightJoystick};
   frc::XboxController xboxController{oi_constants::xboxController};
 
   Limelight limelight;
