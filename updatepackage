@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cd $(dirname $0)
+rm -r package/src/main/cpp package/src/main/include
+cp -r src package/src/main/cpp
+cp -r include package/src/main/include
