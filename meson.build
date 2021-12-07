@@ -6,6 +6,7 @@ sources = ['Robot.cpp',
            'commands/ExampleCommand.cpp',
            'subsystems/ExampleSubsystem.cpp',
            'subsystems/DrivetrainSubsystem.cpp',
+           'subsystems/ClimberSubsystem.cpp',
            'sensors/Limelight.cpp']
 
 real_sources = []
