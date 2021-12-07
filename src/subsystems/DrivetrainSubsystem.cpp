@@ -4,11 +4,11 @@
 
 #include "subsystems/DrivetrainSubsystem.h"
 
-#include <frc/SpeedControllerGroup.h>
-#include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/CounterBase.h>
 #include <frc/DoubleSolenoid.h>
+#include <frc/SpeedControllerGroup.h>
 #include <frc/drive/DifferentialDrive.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
 #include "Constants.h"
 
@@ -44,9 +44,7 @@ void DrivetrainSubsystem::Drive(double leftSpeed, double rightSpeed) {
   m_drive.TankDrive(leftSpeed, rightSpeed, false);
 }
 
-void DrivetrainSubsystem::StopDrive() {
-  m_drive.TankDrive(0, 0, false);
-}
+void DrivetrainSubsystem::StopDrive() { m_drive.TankDrive(0, 0, false); }
 
 void DrivetrainSubsystem::ResetEncoders() {
   dtLeftEncoder.Reset();
@@ -65,29 +63,26 @@ double DrivetrainSubsystem::GetAverageEncoder() {
   return (GetLeftEncoder() + GetRightEncoder()) / 2;
 }
 
-void DrivetrainSubsystem::ResetGyro() {
-  driveGyro.Reset();
-}
+void DrivetrainSubsystem::ResetGyro() { driveGyro.Reset(); }
 
-double DrivetrainSubsystem::GetGyroAngle() {
-  return driveGyro.GetAngle();
-}
+double DrivetrainSubsystem::GetGyroAngle() { return driveGyro.GetAngle(); }
 
-double DrivetrainSubsystem::GetGyroRate() {
-  return driveGyro.GetRate();
-}
+double DrivetrainSubsystem::GetGyroRate() { return driveGyro.GetRate(); }
 
 void DrivetrainSubsystem::ShiftDown() {
-  gearShiftSolenoid.Set(frc::DoubleSolenoid::Value::kForward); // kForward is Low (down) speed
+  gearShiftSolenoid.Set(
+      frc::DoubleSolenoid::Value::kForward); // kForward is Low (down) speed
   gearShiftStatus = GearShiftStatus::Low;
 }
 
 void DrivetrainSubsystem::ShiftUp() {
-  gearShiftSolenoid.Set(frc::DoubleSolenoid::Value::kReverse); // KReverse is High (up) speed
+  gearShiftSolenoid.Set(
+      frc::DoubleSolenoid::Value::kReverse); // KReverse is High (up) speed
   gearShiftStatus = GearShiftStatus::High;
 }
 
-DrivetrainSubsystem::GearShiftStatus DrivetrainSubsystem::GetGearShiftPosition() {
+DrivetrainSubsystem::GearShiftStatus
+DrivetrainSubsystem::GetGearShiftPosition() {
   return gearShiftStatus;
 }
 
@@ -97,8 +92,7 @@ void DrivetrainSubsystem::Periodic() {
   frc::SmartDashboard::PutNumber("Right Drive Encoder: ", GetRightEncoder());
 }
 
-void DrivetrainSubsystem::SimulationPeriodic() {
-  Periodic();
-}
+void DrivetrainSubsystem::SimulationPeriodic() { Periodic(); }
 
-DrivetrainSubsystem::GearShiftStatus DrivetrainSubsystem::gearShiftStatus = GearShiftStatus::Low;
+DrivetrainSubsystem::GearShiftStatus DrivetrainSubsystem::gearShiftStatus =
+    GearShiftStatus::Low;

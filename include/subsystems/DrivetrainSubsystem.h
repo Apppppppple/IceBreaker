@@ -61,13 +61,13 @@ private:
       leftMotor3{drive_constants::leftMotorChannels[2]},
       rightMotor1{drive_constants::rightMotorChannels[0]},
       rightMotor2{drive_constants::rightMotorChannels[1]},
-    rightMotor3{drive_constants::rightMotorChannels[2]};
+      rightMotor3{drive_constants::rightMotorChannels[2]};
 
   // TODO: will this get optimized or is it not worth it?
   VictorSPX *leftMotors[3]{&leftMotor1, &leftMotor2, &leftMotor3},
       *rightMotors[3]{&rightMotor1, &rightMotor2, &rightMotor3};
 
-  // TODO: Does leftController and rightController need to be stored in the
+  // TODO: Do leftController and rightController need to be stored in the
   // class? Not really sure about the semantics for references.
   frc::DifferentialDrive m_drive{leftController, rightController};
 
