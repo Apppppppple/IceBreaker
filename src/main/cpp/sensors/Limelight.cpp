@@ -1,7 +1,7 @@
 #include "sensors/Limelight.h"
 
-#include <units/math.h>
 #include <units/angle.h>
+#include <units/math.h>
 
 #include "Constants.h"
 
@@ -38,15 +38,14 @@ bool Limelight::GetTarget() { return table->GetEntry("tv").GetDouble(0) == 1; }
 GD(GetXError, "tx")
 GD(GetYError, "ty")
 
-double Limelight::avgYError = 0;
 double Limelight::GetAvgYError(double historic_weight) {
   // TODO: '/2' comes from
   // https://github.com/bow4290/Obi2021Rework/blob/7b972881c41ea245d1dd5eed8e9dbfff48beb345/src/main/java/frc/robot/sensors/Limelight.java#L72,
   // but should it be there? It seems like this would give half of the average
   // rather than the average
-  avgYError =
-      ((historic_weight * avgYError) + ((1.0 - historic_weight) * GetYError())) /
-      2.0;
+  avgYError = ((historic_weight * avgYError) +
+               ((1.0 - historic_weight) * GetYError())) /
+              2.0;
   return avgYError;
 }
 
@@ -67,5 +66,5 @@ double Limelight::GetDistance() {
 }
 
 double Limelight::GetBumperDistance() {
-    return GetDistance() - limelight_constants::Lime2BumpDistance();
+  return GetDistance() - limelight_constants::Lime2BumpDistance();
 }
