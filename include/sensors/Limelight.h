@@ -1,5 +1,3 @@
-// DONE
-
 #pragma once
 
 #include <networktables/NetworkTableInstance.h>
@@ -68,6 +66,6 @@ private:
   std::shared_ptr<nt::NetworkTable> table =
       nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 
-  /// Static variable used in Limelight::GetAvgYError
-  static double avgYError;
+  /// Used in calculating Limelight::GetAvgYError
+  double avgYError;
 };
